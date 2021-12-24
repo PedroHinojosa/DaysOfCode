@@ -12,7 +12,7 @@ class Critter(object):
         self.hunger += 1
         self.boredom += 1
 
-    
+    @property
     def __mood (self):
         unhappiness = self.hunger + self.boredom
         if unhappiness < 5:
