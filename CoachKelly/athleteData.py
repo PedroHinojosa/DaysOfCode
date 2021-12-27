@@ -1,3 +1,13 @@
+class Athlete(list):
+    def __init__(self, a_name, a_dob=None, a_times=[]):
+        list.__init__([])
+        self.name =  a_name
+        self.dob = a_dob
+        self.extend(a_times)
+
+    def top3(self):
+        return(sorted(set([sanitize(t) for t in self]))[0:3])
+
 def sanitize(time_string):
     """This function takes a line of time input and makes sure it is in 0.0 format """
     if "-" in time_string:   #Splits the input if it includes a "-" instead of "."
@@ -10,27 +20,30 @@ def sanitize(time_string):
     (mins, secs) = time_string.split(splitter) #Takes the split elements and combines them in the return statement
     return (mins + "." + secs)   
 
-def fileReaderTop3(filename):
-    """This function takes a text file containing player time as input. It returns the top 3 times for the player, excluding duplicates"""
+def get_coach_data(filename):
+    """This function takes a text file containing player time as input. Returns a dictionary with Name, DOB, and fastest times"""
     try:
         with open(filename, "r") as file:   #Reads in the file, ensures it's formatted properly
             data = file.readline()
-            data = data.strip().split(",")
-            data = sorted(set([sanitize(line) for line in data]))[0:3]   #Converts to proper time formats, removes duplicates
-        return data
+        data = data.strip().split(",")
+        
+        return (Athlete(data.pop(0), data.pop(0), data))
 
     except IOError as err:
         print ("File error: " + str(err))
 
-james = fileReaderTop3("james.txt")
-julie = fileReaderTop3("julie.txt")
-mikey = fileReaderTop3("mikey.txt")
-sarah = fileReaderTop3("sarah.txt")
+def displayTimes(c):
+    "Displays the player's name and fastest times"
+    print (c.name + "'s fastest times are: " + str(c.top3()))
 
-print(james)
-print(julie)
-print(mikey)
-print(sarah)
-     
+james = get_coach_data("james2.txt")
+julie = get_coach_data("julie2.txt")
+mikey = get_coach_data("mikey2.txt")
+sarah = get_coach_data("sarah2.txt")
 
+displayTimes(james)
+
+james.append(".5")
+
+displayTimes(james)
     
