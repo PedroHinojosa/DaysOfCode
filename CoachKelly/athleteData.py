@@ -35,15 +35,3 @@ def get_coach_data(filename):
 def displayTimes(c):
     "Displays the player's name and fastest times"
     print (c.name + "'s fastest times are: " + str(c.top3()))
-
-james = get_coach_data("james2.txt")
-julie = get_coach_data("julie2.txt")
-mikey = get_coach_data("mikey2.txt")
-sarah = get_coach_data("sarah2.txt")
-
-displayTimes(james)
-
-james.append(".5")
-
-displayTimes(james)
-    
