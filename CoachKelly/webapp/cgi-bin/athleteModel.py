@@ -1,6 +1,6 @@
 import pickle
 
-from athleteData import Athlete
+from athletelist import Athlete
 
 def get_coach_data(filename):
     """This function takes a text file containing player time as input. Returns a dictionary with Name, DOB, and fastest times"""
@@ -38,5 +38,5 @@ def get_from_store():
 the_files =["sarah2.txt", "james2.txt"]
 data = put_to_store(the_files)
 
-print(data)
+
     
