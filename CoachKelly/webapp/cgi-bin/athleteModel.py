@@ -35,8 +35,7 @@ def get_from_store():
         print("File error (get_from_store):" + str(ioerr))
     return(all_athletes)
 
-the_files =["sarah2.txt", "james2.txt"]
-data = put_to_store(the_files)
+
 
 
     
