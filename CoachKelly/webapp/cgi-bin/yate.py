@@ -42,5 +42,3 @@ def header(header_text, header_level=2):
 
 def para(para_text):
     return('<p>' + para_text + '</p>') 
-
-print(start_response())
