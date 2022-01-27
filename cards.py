@@ -6,13 +6,20 @@ class Card(object):
     RANKS=["A", "2","3","4","5","6","7","8","9","10","J","Q","K"]
     SUITS=["c","d","h","s"]
 
-    def __init__(self, rank, suit):
+    def __init__(self, rank, suit, face_up=True):
         self.rank = rank
         self.suit = suit
+        self.is_face_up = face_up
     
     def __str__(self):
-        rep = self.rank + self.suit
+        if self.is_face_up:
+            rep = self.rank + self.suit
+        else:
+            rep = "XX"
         return rep
+    
+    def flip(self):
+        self.is_face_up = not self.is_face_up
     
 class Hand(object):
     """A hand of playing cards"""
@@ -58,37 +65,8 @@ class Deck(Hand):
                 else:
                     print("No cards left to deal.")
 
-class Unprintable_Card(Card):
-    """A card that won't reveal its rank or suit when printed."""
-    def __str__(self):
-        return "<Unprintable>"
-
-class Positionable_Card(Card):
-    """A card that can be face up or down"""
-    def __init__(self, rank, suit, face_up = True):
-        super(Positionable_Card, self).__init__(rank, suit)
-        self.is_face_up = face_up
-    
-    def __str__(self):
-        if self.is_face_up:
-            rep = super(Positionable_Card, self).__str__()
-        else:
-            rep = "XX"
-        return rep
-    
-    def flip(self):
-        self.is_face_up = not self.is_face_up
-#main
-
-card1 = Card("A", "c")
-card2 = Unprintable_Card("A", "d")
-card3 = Positionable_Card("A", "c")
-
-print (card1)
-print (card2)
-print (card3)
-
-card3.flip()
-print(card3)
+if __name__ == "__main__":
+    print("This is a module with classes for playing cards.")
+    input("\nPress the enter key to exit.")
 
 
