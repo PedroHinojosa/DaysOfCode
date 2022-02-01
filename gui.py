@@ -10,25 +10,21 @@ class Application(Frame):
         self.create_widgets()
     
     def create_widgets(self):
-        """Create three buttons that do nothing"""
-        #create first button
-        self.bttn1 = Button(self, text = "I do nothing")
-        self.bttn1.grid()
-
-        #create second button
-        self.bttn2 = Button(self)
-        self.bttn2.grid()
-        self.bttn2.configure(text = "Me Too!")
-
         #create third button 
-        self.bttn3 = Button(self)
-        self.bttn3.grid()
-        self.bttn3["text"] = "Same here!"
+        Label(self, text = "Choose your favorite type of movie").grid(row = 0, column = 0, sticky = W)
+        self.bttn = Button(self)
+        self.bttn["text"] = "Total Clicks: 0"
+        self.bttn["command"] = self.update_count
+        self.bttn.grid()
+    
+    def update_count(self):
+        self.bttn_clicks += 1
+        self.bttn["text"] = "Total clicks " + str(self.bttn_clicks) 
 
 
 #Create root window
 root = Tk()
-root.title("Lazy Buttons")
+root.title("Click Counter")
 root.geometry("110x110")
 
 #Instantiate
